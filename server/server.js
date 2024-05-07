@@ -1,7 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const config = require('./config');
+const configFromFile = require('./config');
 const routes = require('./routes');
+
+const config = {
+  ...configFromFile,
+  rds_password: process.env.RDS_PASSWORD
+};
 
 const app = express();
 app.use(cors({

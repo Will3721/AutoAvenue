@@ -1,5 +1,11 @@
+require('dotenv').config();
 const mysql = require('mysql');
-const config = require('./config.json');
+const configFromFile = require('./config.json');
+
+const config = {
+  ...configFromFile,
+  rds_password: process.env.RDS_PASSWORD
+};
 
 const connection = mysql.createConnection({
   host: config.rds_host,
